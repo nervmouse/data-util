@@ -1,0 +1,24 @@
+{
+  "name": "@nervmouse/data-util",
+  "version": "1.0.0",
+  "description": "data util",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nervmouse/data-util.git"
+  },
+  "author": "Jim Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nervmouse/data-util/issues"
+  },
+  "homepage": "https://github.com/nervmouse/data-util#readme",
+  "dependencies": {
+    "@nervmouse/object-util": "git+http://10.65.1.66:3000/OneRecord/object-util.git",
+    "mathjs": "^9.3.0",
+    "mingo": "^4.1.2"
+  }
+}
