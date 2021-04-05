@@ -1,1 +1,1 @@
-module.exports=require('./src/object-util.js')
+module.exports=require('./src/data-util.js')
