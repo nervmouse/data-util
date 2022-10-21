@@ -99,7 +99,7 @@ const fns={
 			}
 		return new_data
   },
-  groupBy(data,field,remove_field,pick_one){
+  groupBy(data,field,remove_field,pick_one,order){
     
     const map={}
 		for(const d of data){
@@ -112,6 +112,32 @@ const fns={
 				}
 				map[key].push(d)
 
+    }
+    if (order) {
+      for (let key in map) {
+        const sortOrder = {
+          asc: [],
+          desc: []
+        }
+        for (let orderKey in order) {
+          if (order[orderKey] === 1) {
+            sortOrder.asc.push(orderKey)
+          } else if (order[orderKey] === -1) {
+            sortOrder.desc.push(orderKey)
+          }
+        }
+        // desc first
+        for (let descKey of sortOrder.desc) {
+          map[key] = map[key].sort((a, b) => {
+            return order[descKey] * (new Date(a[descKey]) - new Date(b[descKey]))
+          })
+        }
+        for (let ascKey of sortOrder.asc) {
+          map[key] = map[key].sort((a, b) => {
+            return order[ascKey] * (new Date(a[ascKey]) - new Date(b[ascKey]))
+          })
+        }
+      }
     }
     if (pick_one){
       
