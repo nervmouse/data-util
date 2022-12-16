@@ -143,17 +143,25 @@ const fns={
       return data[oper]
     }
   },
-  toMap(data,col){
+  toMap(data,col,multiple=false){
     const map={}
-    for(const d of data){
-      const key=d[col]
-      if(map[key]){
-        if(!Array.isArray(map[key])) map[key] = [map[key]]
-        map[key].push(d)
-        continue
+    if (multiple){
+      for (const d of data) {
+        const key = d[col];
+        if (map[key]) {
+          if (!Array.isArray(map[key])) map[key] = [map[key]];
+          map[key].push(d);
+          continue;
+        }
+        map[key] = d;
       }
-      map[key]=d
+    }else{
+      for (const d of data) {
+        const key = d[col];
+        map[key] = d;
+      }
     }
+
     return map
   },
   toCSV(data){
