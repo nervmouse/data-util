@@ -9,6 +9,7 @@ yarn-error.log*
 publish
 /api-map.json
 /api-map.js
+dist
 
 #data
 local_db/*
