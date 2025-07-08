@@ -33,6 +33,7 @@
     "tsup": "^8.5.0",
     "typescript": "^5.8.3"
   },
+  "packageManager": "pnpm@9.6.0",
   "tsup": {
     "entry": [
       "src/data-util.ts"
