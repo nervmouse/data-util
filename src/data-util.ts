@@ -1,8 +1,7 @@
 import * as mingo from 'mingo';
 import * as math from 'mathjs';
 import * as ObjUtil from '@nervmouse/object-util';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+
 
 
 // Type definitions
@@ -15,7 +14,7 @@ type GroupByField = string;
 type PickOneOperation = 'first' | 'last' | number;
 
 interface ComputedConfig {
-  require?: string[];
+  require?: {[key:string]:any};
   data_scope?: string;
   inplace?: boolean;
 }
@@ -101,8 +100,16 @@ const fns: DataUtilFunctions = {
         scope_name = data_scope;
         
         if (packages) {
-          for (const pkg of packages) {
-            env[pkg] = require(pkg);
+          for (const pkgName in packages) {
+            const pkg = packages[pkgName];
+            if(typeof pkg ==='object'){
+                env[pkgName]=pkg
+            }else if(typeof pkg ==='function'){
+                env[pkgName] =pkg()
+            }else if(typeof pkg ==='string'){
+                console.log(`dynamic require ${pkgName} is not supported`)
+            }
+            
           }
         }
       } else {
